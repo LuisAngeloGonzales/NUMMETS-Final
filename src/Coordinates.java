@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class Coordinates {
 
-    public ArrayList<Float> xCoordinates = new ArrayList<>();
-    public ArrayList<Float> yCoordinates = new ArrayList<>();
-    public ArrayList<Float> zCoordinates = new ArrayList<>();
+    private ArrayList<Float> xCoordinates = new ArrayList<>();
+    private ArrayList<Float> yCoordinates = new ArrayList<>();
+    private ArrayList<Float> zCoordinates = new ArrayList<>();
 
     public void inputCoordinates(){
 
