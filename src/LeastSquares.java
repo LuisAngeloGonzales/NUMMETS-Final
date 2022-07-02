@@ -1,5 +1,3 @@
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -21,8 +19,7 @@ public class LeastSquares {
     }
 
     public static float getAverage(ArrayList<Float> arrayList){
-        Float average = getSum(arrayList) / arrayList.size();
-        return average;
+        return getSum(arrayList) / arrayList.size();
     }
 
     public static float getSum(ArrayList<Float> arrayList){
