@@ -53,7 +53,7 @@ public class MultiLinearReg {
             Float factor1 = arrayList3.get(0);
             Float factor2 = arrayList2.get(0);
             Float factor3 = arrayList1.get(0);
-            for(int i=0; i>3; i++){
+            for(int i=0; i<=3; i++){
                 Float x = arrayList3.get(i)- (factor1/factor3)*arrayList1.get(i);
                 arrayList3.set(i, x);
 
@@ -63,7 +63,7 @@ public class MultiLinearReg {
             factor2 = arrayList2.get(1);
             factor1 = arrayList3.get(1);
 
-            for(int i=1; i>3; i++){
+            for(int i=1; i<=3; i++){
                 Float x = arrayList3.get(i)- (factor1/factor2)*arrayList2.get(i);
                 arrayList3.set(i, x);
             }
