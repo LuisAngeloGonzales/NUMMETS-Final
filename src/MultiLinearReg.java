@@ -1,5 +1,7 @@
+import java.awt.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class MultiLinearReg {
@@ -46,7 +48,7 @@ public class MultiLinearReg {
     }
 
     public static ArrayList<Float> solveMatrix(ArrayList<Float> arrayList1, ArrayList<Float> arrayList2, ArrayList<Float> arrayList3){
-        ArrayList<Float> result = null;
+        ArrayList<Float> result = new ArrayList<>();
         if (arrayList3.get(0) != 0){
             Float factor1 = arrayList3.get(0);
             Float factor2 = arrayList2.get(0);
@@ -76,9 +78,9 @@ public class MultiLinearReg {
     }
 
     public static String getEquation(ArrayList<Float> array1, ArrayList<Float> array2, ArrayList<Float> array3, String var1, String var2, String var3){
-        Float a0, a1, a2;
         String equation = "";
 
+        Float n = Float.valueOf(array1.size());
         Float var1Sum = getSum(array1);     //Ex
         Float var2Sum = getSum(array2);     //Ey
         Float var3Sum = getSum(array3);  //Ez
@@ -88,6 +90,23 @@ public class MultiLinearReg {
         Float var2var1Sum = getSum(multiplyArrays(array1,array2));  //Eyx
         Float var2var3Sum = getSum(multiplyArrays(array3,array2));  //Eyz
         Float var1var3Sum = getSum(multiplyArrays(array1,array3));  //Exz
+
+        ArrayList<Float> row1 = new ArrayList<>(Arrays.asList(n, var1Sum, var3Sum, var2Sum));                               //n, Ex, Ez, Ey
+        ArrayList<Float> row2 = new ArrayList<>(Arrays.asList(var1Sum, var1SquaredSum, var1var3Sum, var2var1Sum)){};        //Ex, Ex^2, Exz, Eyx
+        ArrayList<Float> row3 = new ArrayList<>(Arrays.asList(var3SquaredSum, var1var3Sum, var3SquaredSum, var2var3Sum));   //Ez, Exz, Ez^2, Eyz
+
+        ArrayList<Float> results = solveMatrix(row1, row2, row3);
+        Float a0 = results.get(0);
+        Float a1 = results.get(1);
+        Float a2 = results.get(2);
+
+        equation = equation.concat(var2 + " = " + a0 + " ");
+
+        if (a1 < 0) equation = equation.concat(a1 + var1 + " ");
+        else equation = equation.concat("+" +a1+var1 + " ");
+
+        if (a2 < 0) equation = equation.concat(a2 + var3);
+        else equation = equation.concat("+" +a2+var3);
 
         return equation;
     }
