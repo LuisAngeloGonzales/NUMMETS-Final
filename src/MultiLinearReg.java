@@ -46,7 +46,7 @@ public class MultiLinearReg {
     }
 
     public static ArrayList<Float> solveMatrix(ArrayList<Float> arrayList1, ArrayList<Float> arrayList2, ArrayList<Float> arrayList3){
-        ArrayList<Float> result = null;
+        ArrayList<Float> result = new ArrayList<Float>();
         if (arrayList3.get(0) != 0){
             Float factor1 = arrayList3.get(0);
             Float factor2 = arrayList2.get(0);
