@@ -45,6 +45,36 @@ public class MultiLinearReg {
         return resultArray;
     }
 
+    public static ArrayList<Float> solveMatrix(ArrayList<Float> arrayList1, ArrayList<Float> arrayList2, ArrayList<Float> arrayList3){
+        ArrayList<Float> result = null;
+        if (arrayList3.get(0) != 0){
+            Float factor1 = arrayList3.get(0);
+            Float factor2 = arrayList2.get(0);
+            Float factor3 = arrayList1.get(0);
+            for(int i=0; i>3; i++){
+                Float x = arrayList3.get(i)- (factor1/factor3)*arrayList1.get(i);
+                arrayList3.set(i, x);
+
+                Float y = arrayList2.get(i)- (factor2/factor3)*arrayList1.get(i);
+                arrayList2.set(i, y);
+            }
+            factor2 = arrayList2.get(1);
+            factor1 = arrayList3.get(1);
+
+            for(int i=1; i>3; i++){
+                Float x = arrayList3.get(i)- (factor1/factor2)*arrayList2.get(i);
+                arrayList3.set(i, x);
+            }
+        }
+        Float z = arrayList3.get(3)/arrayList3.get(2);
+        Float y = (arrayList2.get(3)-arrayList2.get(2)*z)/arrayList2.get(1);
+        Float x = (arrayList1.get(3) - arrayList1.get(1)*y - arrayList1.get(2)*z)/arrayList1.get(0);
+        result.add(x);
+        result.add(y);
+        result.add(z);
+        return result;
+    }
+
     public static String getEquation(ArrayList<Float> array1, ArrayList<Float> array2, ArrayList<Float> array3, String var1, String var2, String var3){
         Float a0, a1, a2;
         String equation = "";
