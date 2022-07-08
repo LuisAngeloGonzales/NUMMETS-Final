@@ -93,7 +93,7 @@ public class MultiLinearReg {
 
         ArrayList<Float> row1 = new ArrayList<>(Arrays.asList(n, var1Sum, var3Sum, var2Sum));                               //n, Ex, Ez, Ey
         ArrayList<Float> row2 = new ArrayList<>(Arrays.asList(var1Sum, var1SquaredSum, var1var3Sum, var2var1Sum)){};        //Ex, Ex^2, Exz, Eyx
-        ArrayList<Float> row3 = new ArrayList<>(Arrays.asList(var3SquaredSum, var1var3Sum, var3SquaredSum, var2var3Sum));   //Ez, Exz, Ez^2, Eyz
+        ArrayList<Float> row3 = new ArrayList<>(Arrays.asList(var3Sum, var1var3Sum, var3SquaredSum, var2var3Sum));   //Ez, Exz, Ez^2, Eyz
 
         ArrayList<Float> results = solveMatrix(row1, row2, row3);
         Float a0 = results.get(0);
